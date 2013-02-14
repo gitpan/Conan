@@ -1,0 +1,4 @@
+\.git
+^MYMETA\.yml$
+^MYMETA\.json$
+^Conan-.*?.tar.gz
