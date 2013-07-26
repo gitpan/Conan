@@ -1,6 +1,6 @@
 
 package Conan;
 
-our $VERSION = '0.000001_01';
+our $VERSION = '0.000002';
 
 1;

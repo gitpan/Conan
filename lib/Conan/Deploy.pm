@@ -122,6 +122,8 @@ sub md5 {
 		croak "Mismatch between target and source on [$file]"
 			if( $t{"$file"} ne $s{"$file"} );
 	}
+
+	return 1;
 }
 
 1;

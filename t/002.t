@@ -1,6 +1,5 @@
 use lib 'lib';
 use Test::More tests => 1;
-use Conan::Configure::Xen;
 
 use_ok( 'Conan::Configure::Xen' );
 
