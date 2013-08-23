@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Conan
-version:            0.000006
+version:            0.0.7
 abstract:           Building and promoting images a xen cloud
 author:
     - Peter Blair <cpan@petermblair.com>
