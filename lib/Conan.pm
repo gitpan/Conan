@@ -1,6 +1,5 @@
-
 package Conan;
 
-our $VERSION = '0.000002';
+use version; $VERSION = qv('0.0.4');
 
 1;

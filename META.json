@@ -29,7 +29,7 @@
    "provides" : {
       "Conan" : {
          "file" : "lib/Conan.pm",
-         "version" : "0.000002"
+         "version" : "v0.0.4"
       },
       "Conan::Configure::Xen" : {
          "file" : "lib/Conan/Configure/Xen.pm",
@@ -54,5 +54,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.000002"
+   "version" : "v0.0.4"
 }

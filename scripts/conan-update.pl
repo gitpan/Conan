@@ -51,5 +51,5 @@ The script takes a key/value pair as the first parameter, followed by a regex th
 
 =head2 USAGE
 
-perl scripts/conan-update.pl "version = '2.3'" 'oma0[5-9].cfg'
+perl scripts/conan-update.pl "version = '2.3'" 'foo0[5-9].cfg'
 

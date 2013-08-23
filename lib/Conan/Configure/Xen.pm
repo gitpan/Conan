@@ -1,5 +1,6 @@
 package Conan::Configure::Xen;
 
+use strict;
 use Carp;
 
 sub new {
@@ -9,33 +10,33 @@ sub new {
 		basedir	=> '/xen/prod/etc/',
 		@_,
 	};
-
+	
 	# By default the IP isn't outputted, but rather
 	# generated in the 'extra' field
 	unless( $args->{generators}->{ip} ){
 		$args->{generators}->{ip} = sub {
-			$self = shift;
+			my $self = shift;
 			return sprintf "#ip = '%s'\n", $self->{settings}->{ip};
 		};
 	}
 
 	unless( $args->{generators}->{netmask} ){
 		$args->{generators}->{netmask} = sub {
-			$self = shift;
+			my $self = shift;
 			return sprintf "#netmask = '%s'\n", $self->{settings}->{netmask};
 		};
 	}
 
 	unless( $args->{generators}->{gateway} ){
 		$args->{generators}->{gateway} = sub {
-			$self = shift;
+			my $self = shift;
 			return sprintf "#gateway = '%s'\n", $self->{settings}->{gateway};
 		};
 	}
 
 	unless( $args->{generators}->{extra} ){
 		$args->{generators}->{extra} = sub {
-			$self = shift;
+			my $self = shift;
 			return sprintf "extra = ' ip=%s::%s:%s::eth0:off NFS=%s= %s %s ro clocksource=jiffies'\n",
 				$self->{settings}->{ip},
 				$self->{settings}->{gateway},
@@ -46,7 +47,7 @@ sub new {
 		};
 	}
 
-	return bless $args => $class;
+	bless $args => $class;
 }
 
 sub generate {
@@ -119,7 +120,9 @@ sub parse {
 	# post parse stuff
 	if( $self->{settings}->{NFS} ){
 		if( $self->{settings}->{version} ){
-			$self->{settings}->{NFS} =~ s/\(.*?\)/$self->{settings}->{version}/;
+			$self->{settings}->{NFS} .= "/" . $self->{settings}->{version};
+			# Strip duplicate /
+			$self->{settings}->{NFS} =~ s,/+,/,g;
 		}
 		$self->{settings}->{nfsroot} = $self->{settings}->{NFS};
 	}
@@ -140,7 +143,7 @@ sub parse_template {
 
 	my %settings;
 
-	open $fd, "<$filename";
+	open my $fd, "<$filename";
 
 	if( $fd ){
 		my @lines = <$fd>;
@@ -168,7 +171,7 @@ Conan::Configure::Xen - Used to parse and generate I<Xen> compatible configurati
   
   my $config = Conan::Configure::Xen->new(
           basedir => '/tmp/',
-          name => 'oma06',
+          name => 'foo06',
           settings => {
                   ip => '1.2.3.5',
           },
@@ -186,7 +189,7 @@ This class is used to pull in configuration templates (both class type, and
 image type) to generate I<Xen> style configuration files.
 
 All I<settings> are pulled from the configuration files matching
-C<oma.cfg.tmpl> and C<oma\d+.cfg> in that order.  Meaning, the I<settings> data
+C<foo.cfg.tmpl> and C<foo\d+.cfg> in that order.  Meaning, the I<settings> data
 structure will source the base template file first, then complete the sourcing
 with the config file (if any) that matches the hostname provided.
 
