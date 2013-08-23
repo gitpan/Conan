@@ -1,35 +1,23 @@
----
-abstract: 'Building and promoting images a xen cloud'
+--- #YAML:1.0
+name:               Conan
+version:            0.0.5
+abstract:           Building and promoting images a xen cloud
 author:
-  - 'Peter Blair <pblair@cpan.org>'
-build_requires:
-  File::Rsync: 0.42
-  Test::More: 0.1
+    - Peter Blair <cpan@petermblair.com>
+license:            unknown
+distribution_type:  module
 configure_requires:
-  Module::Build: 0.38
-dynamic_config: 1
-generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.110440'
-license: perl
+    ExtUtils::MakeMaker:  0
+build_requires:
+    ExtUtils::MakeMaker:  0
+requires:
+    File::Rsync:  0.42
+    Test::More:   0.1
+no_index:
+    directory:
+        - t
+        - inc
+generated_by:       ExtUtils::MakeMaker version 6.57_05
 meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
-name: Conan
-provides:
-  Conan:
-    file: lib/Conan.pm
-    version: v0.0.4
-  Conan::Configure::Xen:
-    file: lib/Conan/Configure/Xen.pm
-    version: 0
-  Conan::Deploy:
-    file: lib/Conan/Deploy.pm
-    version: 0
-  Conan::Promote:
-    file: lib/Conan/Promote.pm
-    version: 0
-  Conan::Promote::Xen:
-    file: lib/Conan/Promote/Xen.pm
-    version: 0
-resources:
-  license: http://dev.perl.org/licenses/
-version: v0.0.4
+    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
+    version:  1.4

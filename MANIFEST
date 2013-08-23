@@ -1,4 +1,4 @@
-Build.PL
+Makefile.PL
 examples/foo.cfg.tmpl
 examples/foo.pl
 examples/foo01.cfg
